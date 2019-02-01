@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: _buildLightTheme(),
-      home: CallDetailScreen(),
+      home: LoginScreen(),
     );
   }
 }

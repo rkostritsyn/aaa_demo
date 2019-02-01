@@ -43,6 +43,20 @@ flutter:
   assets:
      - assets/barcode.png
      - assets/email_outline.png
+     - assets/road.png
+     - assets/map-marker.png
+     - assets/phone-log.png
+     - assets/account-multiple.png
+     - assets/battery-charging-70.png
+     - assets/comment.png
+     - assets/comment-plus.png
+     - assets/credit-card.png
+     - assets/phone.png
+     - assets/phone-log.png
+     - assets/send.png
+     - assets/van-utility.png
+     - assets/image-area.png
+     - assets/playlist-check.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

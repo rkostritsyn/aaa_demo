@@ -1,3 +1,4 @@
+import 'package:aaa_demo/navigation/call_detail_navigator.dart';
 import 'package:aaa_demo/ui/screen/call_screen.dart';
 import 'package:aaa_demo/ui/screen/user_screen.dart';
 import 'package:aaa_demo/ui/screen/utils_screen.dart';
@@ -16,7 +17,7 @@ class HomeScreenState extends State<HomeScreen> {
   var title = 'Calls';
 
   static List<Widget> _navigationItemList = [
-      CallScreen(),
+      CallFetalScreenNavigator(),
       UtilityScreen(),
       UserScreen()
   ];

@@ -22,9 +22,9 @@ class LoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(bottom: 25),
+              margin: EdgeInsets.only(bottom: 15),
                 child: Text(loginWelcome, style: h1Text,)),
-            Text(loginMessage),
+            Text(loginMessage, style: TextStyle(color: Colors.black54),),
 
             TextField(
               autocorrect: false,
