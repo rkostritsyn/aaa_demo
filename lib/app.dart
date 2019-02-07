@@ -1,8 +1,5 @@
 
-import 'package:aaa_demo/ui/screen/call_detail_screen.dart';
-import 'package:aaa_demo/ui/screen/call_screen.dart';
 import 'package:aaa_demo/ui/screen/home_screen.dart';
-import 'package:aaa_demo/ui/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -10,7 +7,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: _buildLightTheme(),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

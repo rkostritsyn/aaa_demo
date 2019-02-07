@@ -1,5 +1,6 @@
 import 'package:aaa_demo/res/dimen.dart';
 import 'package:aaa_demo/res/style.dart';
+import 'package:aaa_demo/ui/custom_time_line.dart';
 import 'package:aaa_demo/ui/screen/call_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,23 @@ class CallItem extends StatelessWidget {
   final bool hasDivider;
 
   CallItem({this.hasDivider = true});
+
+  List<TimeLineModel> steps = [
+    TimeLineModel(
+        state: TimeLineM.complete,
+        title: Text("Re"),
+        subtitle: Text("11:15"),
+        isActive: true),
+    TimeLineModel(
+        title: Text("PTA"),
+        subtitle: Text("12:15"),
+        state: TimeLineM.editing,
+        isActive: true),
+    TimeLineModel(
+        title: Text("ETA"),
+        state: TimeLineM.disabled,
+        isActive: false),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,18 +76,9 @@ class CallItem extends StatelessWidget {
                         child: Text('T6 Tow', style: linkFontStyleCall),
                       ),
 
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: space),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text('Re: 11:15', style: dataFontStyleCall),
-                            Text('PTA: 12:15', style: dataFontStyleCall),
-                            Text('ETA: 16:15', style: dataFontStyleCall)
-                          ],
-                        ),
-                      ),
+                      Container(
+                        height: 55,
+                          child: CustomStepper(steps: steps, type: TimeLineType.horizontal,)),
 
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
