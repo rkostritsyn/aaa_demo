@@ -15,7 +15,7 @@ class CallDetailScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          CallItem(hasDivider: false,),
+          CallItem(),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),

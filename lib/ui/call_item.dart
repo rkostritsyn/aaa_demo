@@ -1,104 +1,102 @@
-import 'package:aaa_demo/res/dimen.dart';
 import 'package:aaa_demo/res/style.dart';
-import 'package:aaa_demo/ui/custom_time_line.dart';
 import 'package:aaa_demo/ui/screen/call_detail_screen.dart';
+import 'package:aaa_demo/ui/time_line/timeline.dart';
+import 'package:aaa_demo/ui/time_line/timeline_model.dart';
 import 'package:flutter/material.dart';
 
-class CallItem extends StatelessWidget {
-  final bool hasDivider;
+class CallItem extends StatefulWidget {
 
-  CallItem({this.hasDivider = true});
+  @override
+  State<StatefulWidget> createState() => CallItemState();
+}
 
-  List<TimeLineModel> steps = [
-    TimeLineModel(
-        state: TimeLineM.complete,
-        title: Text("Re"),
-        subtitle: Text("11:15"),
-        isActive: true),
-    TimeLineModel(
-        title: Text("PTA"),
-        subtitle: Text("12:15"),
-        state: TimeLineM.editing,
-        isActive: true),
-    TimeLineModel(
-        title: Text("ETA"),
-        state: TimeLineM.disabled,
-        isActive: false),
+class CallItemState extends State<CallItem> {
+  double _animatedHeight = 100.0;
+  Widget _expandIcon = Icon(Icons.keyboard_arrow_down);
+
+  final List<TimelineModel> list = [
+    TimelineModel(
+        id: "1",
+        description: "Test 1",
+        title: "Test 1"),
+    TimelineModel(
+        id: "2",
+        description: "Test 2",
+        title: "Test 2"),
+    TimelineModel(
+        id: "3",
+        description: "Test 3",
+        title: "Test 3")
   ];
+
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => goToDetail(context),
-
-      child: Column(
-          children: <Widget>[
-            Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Row(
-                          children: <Widget>[
-                            buildStatus('AS'),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text('12234', style: largeFontSizeCall),
+    return Column(
+        children: <Widget>[
+          Container(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          buildStatus('AS'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0),
+                            child: Text('12234', style: largeFontSizeCall),
+                          ),
+                          Text('(2019-01-25)', style: midFontSizeCall),
+                          Expanded(
+                            child: Container(
+                              child: IconButton(icon: _expandIcon, iconSize: 25, onPressed: _expand,),
+                              alignment: Alignment.centerRight,
                             ),
-                            Text('(2019-01-25)', style: midFontSizeCall)
-                          ],
-                        ),
+                          )
+                        ],
                       ),
+                    ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: space),
-                        child: Text('7627 NW 127TH MANOR / NW 76TH ST'),
+                    Container(
+                      height: 350,
+                      child: TimelineComponent(
+                        timelineList: list,
                       ),
+                    ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: space),
-                        child: Text('TAMARAC, FL'),
+                    AnimatedContainer(duration: const Duration(milliseconds: 120),
+                      child: Container(
+                        height: 100,
+                        child:Text('Text')
                       ),
+                      height: _animatedHeight,
+                      width: double.infinity,
+                      color: Colors.tealAccent,
+                    )
+                  ],
+                ),
+              )
+          ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: space),
-                        child: Text('T 180 Tire Issue Requires Tow To Shop',
-                            style: linkFontStyleCall),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: space),
-                        child: Text('T6 Tow', style: linkFontStyleCall),
-                      ),
-
-                      Container(
-                        height: 55,
-                          child: CustomStepper(steps: steps, type: TimeLineType.horizontal,)),
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Text('Passanger Car/Truck',
-                            style: truckPassengerFontStyleCall),
-                      )
-
-                    ],
-                  ),
-                )
-            ),
-
-            getDivider(hasDivider)
-          ]
-      ),
+          getDivider(true)
+        ]
     );
   }
 
+  void _expand() {
+    setState((){
+      _animatedHeight!=0.0?_animatedHeight=0.0:_animatedHeight=100.0;
+      _animatedHeight == 0.0? _expandIcon = Icon(Icons.keyboard_arrow_right) : _expandIcon = Icon(Icons.keyboard_arrow_down);
+    });
+  }
+
   void goToDetail(BuildContext context) {
-    if (hasDivider) {
+    if (true) {
       Navigator.push(
         context,
         MaterialPageRoute(
