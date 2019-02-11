@@ -7,6 +7,7 @@ class CallHeader extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
+          color: Colors.white,
           height: 50,
           child: Padding(
             padding: const EdgeInsets.all(8.0),

@@ -28,82 +28,89 @@ class CallItemState extends State<CallItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[
-          Container(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 5),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          buildStatus('AS'),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0),
-                            child: Text('12234', style: largeFontSizeCall),
-                          ),
-                          Text('(2019-01-25)', style: midFontSizeCall),
-                          Expanded(
-                            child: Container(
-                              child: IconButton(icon: _expandIcon, iconSize: 25, onPressed: _expand,),
-                              alignment: Alignment.centerRight,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-
-                    //SPIKE FAKE-TIMELINE
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      color: Colors.white,
+      margin: EdgeInsets.only(top: 5, bottom: 5),
+      child: GestureDetector(
+        onTap: () => goToDetail(context),
+        child: Column(
+            children: <Widget>[
+            Divider(height: 1, color: Colors.grey),
+              Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
-                              Container(
-                                width: 150,
-                                child: Text('7627 NW 127TH MANOR'),
+                              buildStatus('AS'),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0),
+                                child: Text('12234', style: largeFontSizeCall),
                               ),
-                              Container(
-                                  width: 100,
-                                  child: Text('NW 76TH ST TAMARAC, FL')),
+                              Text('(2019-01-25)', style: midFontSizeCall),
+                              Expanded(
+                                child: Container(
+                                  child: IconButton(icon: _expandIcon, iconSize: 25, onPressed: _expand,),
+                                  alignment: Alignment.centerRight,
+                                ),
+                              )
                             ],
                           ),
-                          CustomStepper(
-                            steps: my_steps,
-                            type: TimeLineType.horizontal,
-                            tlColor: Colors.black12,
+                        ),
+
+                        //SPIKE FAKE-TIMELINE
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width: 150,
+                                    child: Text('7627 NW 127TH MANOR'),
+                                  ),
+                                  Container(
+                                      width: 100,
+                                      child: Text('NW 76TH ST TAMARAC, FL')),
+                                ],
+                              ),
+                              CustomStepper(
+                                steps: my_steps,
+                                type: TimeLineType.horizontal,
+                                tlColor: Colors.black12,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+
+                        Center(
+                          child: Text(
+                            'T 180 Tire Issue Request Tow To Shop',
+                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)), ),
+
+                        AnimatedContainer(duration: const Duration(milliseconds: 120),
+                          child: Container(
+                            height: 130,
+                            child: getExpandedWidget()
+                          ),
+                          height: _animatedHeight,
+                          width: double.infinity,
+                        )
+                      ],
                     ),
-
-                    Center(
-                      child: Text(
-                        'T 180 Tire Issue Request Tow To Shop',
-                        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)), ),
-
-                    AnimatedContainer(duration: const Duration(milliseconds: 120),
-                      child: Container(
-                        height: 130,
-                        child: getExpandedWidget()
-                      ),
-                      height: _animatedHeight,
-                      width: double.infinity,
-                    )
-                  ],
-                ),
-              )
-          ),
-
-//          getDivider(true)
-        ]
+                  )
+              ),
+            Divider(height: 1, color: Colors.grey),
+            ]
+        ),
+      ),
     );
   }
 
@@ -181,24 +188,14 @@ class CallItemState extends State<CallItem> {
   }
 
   void goToDetail(BuildContext context) {
-    if (true) {
       Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => CallDetailScreen()
-        ),
+        )
       );
-    }
-  }
 
-//  Widget getDivider(bool hasDivider) {
-//    if(hasDivider) {
-//      return Divider(height: 1, color: Colors.black54);
-//    } else {
-//      // SPIKE SPIKE SPIKE
-//      return Divider(height: 1, color: Colors.transparent); ;
-//    }
-//  }
+  }
 
   Widget buildStatus(String text) {
     return CircleAvatar(

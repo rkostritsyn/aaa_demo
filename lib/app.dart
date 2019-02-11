@@ -30,7 +30,7 @@ ThemeData _buildLightTheme() {
     splashFactory: InkRipple.splashFactory,
     accentColor: secondaryColor,
     canvasColor: Colors.white,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     backgroundColor: Colors.white,
     errorColor: const Color(0xFFB00020),
     buttonTheme: ButtonThemeData(
